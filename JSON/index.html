@@ -78,8 +78,6 @@
     <section class="profile">
         <img src="Ybo.png" alt="Profile Picture">
         <p>I am an image and I'm all by myself</p>
-        <br>
-        <button onclick="location.href='JSON/index.html'">JSON</button>
     </section>
     
     <div class="page-content">
@@ -109,11 +107,37 @@
             <h2>Contact</h2>
             <p>I am division with id equal to contact</p>
         </section>
-
+        <section id="subjects-taken" class="content-section">
+            <h2>Subjects Taken</h2>
+            <div id="courses-list">Loading courses...</div>
+        </section>
     </div>
 
     <footer>
         <p>I am a footer the last section of this page</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("https://raw.githubusercontent.com/JirehAngeloQuirog/JirehAngeloQuirogCSS.github.io/main/courses.json")
+                .then(response => response.json())
+                .then(data => {
+                    const coursesList = document.getElementById("courses-list");
+                    coursesList.innerHTML = "";
+    
+                    data.courses.forEach(course => {
+                        const courseDiv = document.createElement("div");
+                        courseDiv.innerHTML = `<h3>${course.year} - ${course.semester}</h3><ul>` + 
+                            course.subjects.map(subject => `<li>${subject}</li>`).join("") + 
+                            `</ul>`;
+                        coursesList.appendChild(courseDiv);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById("courses-list").innerHTML = "Error loading courses.";
+                    console.error("Error fetching courses:", error);
+                });
+        });
+    </script>
 </body>
 </html>
