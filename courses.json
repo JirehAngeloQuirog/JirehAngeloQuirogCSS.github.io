@@ -1,0 +1,34 @@
+{
+    "courses": [
+        {
+            "year": "1st Year",
+            "semester": "1st Semester",
+            "subjects": ["Physical Activity Towards Health and Fitness 1", "Purposive Communication", "Mathematics in Modern World", "The Contemporary World", "Reading in Philippine History", "Reserve Officers' Training Corps 1", "Introduction to Computing", "Computer Programing 1"]
+        },
+        {
+            "year": "1st Year",
+            "semester": "2nd Semester",
+            "subjects": ["Reserve Officer Training Corps 2", "Science, Technology and Society", "Computer Programing 2", "Data Structures and Algorithms", "Discrete Mathematics", "Art Appreciation", "Understanding the Self", "Fitness Activity and Exercises"]
+        },
+        {
+            "year": "2nd Year",
+            "semester": "1st Semester",
+            "subjects": ["Physical Activity Towards Health and Fitness 1", "Intro to Human Computer Interaction", "Fundamentals of Database Systems", "Platform Technologies", "Object Oriented Programming", "Accounting Principles", "Environmental Science"]
+        },
+        {
+            "year": "2nd Year",
+            "semester":"2nd Semester",
+            "subjects":["Information Management", "Networking 1", "Ethics", "Life and Works of Rizal", "Physical Activity Towards Health and Fitness 2", "Web Systems and Technolgies", "Systems Integration and Architecture"]
+        },
+        {
+            "year": "3rd Year",
+            "semester":"1st Semester",
+            "subjects":["Information Assurance and Security", "Mobile Programming", "Software Engineering", "IT Elective 1", "Networking 2", "Technopreneurship", "Philippine Indigenous Communities and Peace Education"]
+        },
+        {
+            "year": "3rd Year",
+            "semester":"2nd Semester",
+            "subjects":["Integrative Programming and Technologies", "Applications Development and Emerging Technologies", "IT Elective 2", "CAPSTONE Project and Research 1", "Foreign Language", "Quantitative Methods"]
+        }
+    ]
+}

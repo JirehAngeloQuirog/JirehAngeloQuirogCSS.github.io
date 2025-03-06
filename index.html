@@ -64,7 +64,6 @@
 <body>
     <header>
         <h1>Jireh Angelo S. Quirog</h1>
-        <p>Web Developer | Designer | Freelancer</p>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
@@ -78,44 +77,63 @@
     
     <section class="profile">
         <img src="Ybo.png" alt="Profile Picture">
-        <p>Hello! I am a passionate web developer specializing in modern, user-friendly web applications.</p>
+        <p>I am an image and I'm all by myself</p>
     </section>
     
     <div class="page-content">
+        <p>I am division with class equal to page-content that encloses all other division elements below</p>
+        <h1>Hello! I am a text with the largest heading</h1>
         <section id="about" class="content-section">
-            <h2>About Me</h2>
-            <p>Experienced web developer with a strong background in front-end web development.</p>
+            <h2>About</h2>
+            <p>I am division with id equal to about</p>
         </section>
 
         <section id="education" class="content-section">
             <h2>Education</h2>
-            <p>Bachelor's Degree in Information Technology - University of Science and Technology of Southern Philippines.</p>
+            <div id="courses-list">Loading courses...</div>
         </section>
 
         <section id="skills" class="content-section">
             <h2>Skills</h2>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-
-            </ul>
+            <p>I am division with id equal to skills</p>
         </section>
 
         <section id="portfolio" class="content-section">
             <h2>Portfolio</h2>
-            <p>Check out my work on <a href="#">https://github.com/JirehAngeloQuirog?tab=repositories</a>.</p>
+            <p>I am division with id equal to portfolio</p>
         </section>
 
         <section id="contact" class="content-section">
             <h2>Contact</h2>
-            <p>Email: quirogybo21@gmail.com</p>
-            <p>Socials: <a href="#">https://www.facebook.com/jireh.angelo.salas.quirog/</a></p>
+            <p>I am division with id equal to contact</p>
         </section>
     </div>
 
     <footer>
-        <p>&copy; Yours truly.</p>
+        <p>I am a footer the last section of this page</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("https://raw.githubusercontent.com/JirehAngeloQuirog/JirehAngeloQuirogCSS.github.io/main/courses.json")
+                .then(response => response.json())
+                .then(data => {
+                    const coursesList = document.getElementById("courses-list");
+                    coursesList.innerHTML = "";
+    
+                    data.courses.forEach(course => {
+                        const courseDiv = document.createElement("div");
+                        courseDiv.innerHTML = `<h3>${course.year} - ${course.semester}</h3><ul>` + 
+                            course.subjects.map(subject => `<li>${subject}</li>`).join("") + 
+                            `</ul>`;
+                        coursesList.appendChild(courseDiv);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById("courses-list").innerHTML = "Error loading courses.";
+                    console.error("Error fetching courses:", error);
+                });
+        });
+    </script>
 </body>
 </html>
