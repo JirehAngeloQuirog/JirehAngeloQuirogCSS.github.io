@@ -59,6 +59,13 @@
             padding: 10px;
             margin-top: 20px;
         }
+        #search-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -79,8 +86,9 @@
         <img src="Ybo.png" alt="Profile Picture">
         <p>I am an image and I'm all by myself</p>
         <br>
-        <button onclick="location.href='JSON/subjectsTaken.html'">JSON</button>
-        <button onClick="location.href='search/searchFeature.html'">Search Feature</button>
+        <button onclick="location.href='../index.html'">HTML</button>
+        <button onclick="location.href='../JSON/subjectsTaken.html'">JSON</button>
+
     </section>
     
     <div class="page-content">
@@ -93,7 +101,7 @@
 
         <section id="education" class="content-section">
             <h2>Education</h2>
-            <p>I am divisin with id equal to education</p>
+            <p>I am division with id equal to education</p>
         </section>
 
         <section id="skills" class="content-section">
@@ -110,11 +118,50 @@
             <h2>Contact</h2>
             <p>I am division with id equal to contact</p>
         </section>
-
+        <section id="subjects-taken" class="content-section">
+            <h2>Subjects Taken</h2>
+            <input type="text" id="search-box" placeholder="Search for a subject...">
+            <div id="courses-list">Loading courses...</div>
+        </section>
     </div>
 
     <footer>
         <p>I am a footer the last section of this page</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("https://raw.githubusercontent.com/JirehAngeloQuirog/JirehAngeloQuirogCSS.github.io/main/JSON/courses.json")
+                .then(response => response.json())
+                .then(data => {
+                    const coursesList = document.getElementById("courses-list");
+                    const searchBox = document.getElementById("search-box");
+                    
+                    function renderCourses(filter = "") {
+                        coursesList.innerHTML = "";
+                        data.courses.forEach(course => {
+                            let filteredSubjects = course.subjects.filter(subject => subject.toLowerCase().includes(filter.toLowerCase()));
+                            if (filteredSubjects.length > 0 || filter === "") {
+                                const courseDiv = document.createElement("div");
+                                courseDiv.innerHTML = `<h3>${course.year} - ${course.semester}</h3><ul>` + 
+                                    filteredSubjects.map(subject => `<li>${subject}</li>`).join("") + 
+                                    `</ul>`;
+                                coursesList.appendChild(courseDiv);
+                            }
+                        });
+                    }
+                    
+                    searchBox.addEventListener("input", function () {
+                        renderCourses(this.value);
+                    });
+                    
+                    renderCourses();
+                })
+                .catch(error => {
+                    document.getElementById("courses-list").innerHTML = "Error loading courses.";
+                    console.error("Error fetching courses:", error);
+                });
+        });
+    </script>
 </body>
 </html>
